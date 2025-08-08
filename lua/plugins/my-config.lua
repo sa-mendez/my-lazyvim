@@ -47,6 +47,9 @@ return {
     "folke/which-key.nvim",
     opts = {
       spec = {
+        -- Add new buffer binding under Buffer group
+        { "<leader>bn", "<cmd>enew<cr>", desc = "New Buffer" },
+
         --Lazy group under <leader>l
         { "<leader>ll", "<cmd>Lazy<cr>", desc = "Lazy" },
         { "<leader>lx", "<cmd>LazyExtra<cr>", desc = "Lazy Extra" },
