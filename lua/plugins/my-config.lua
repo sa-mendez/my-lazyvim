@@ -1,4 +1,4 @@
--- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
+-- every sp c file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
 -- In your plugin files, you can:
 -- * add extra plugins
@@ -59,6 +59,7 @@ return {
         { "<leader>ta", "<cmd>ToggleTailBuffer<cr>", desc = "Toggle Tail Buffer" },
         { "<leader>tc", "<cmd>ColorizerToggle<cr>", desc = "Toggle Colorizer" },
         { "<leader>tl", "<cmd>set list!<cr>", desc = "Toggle List" },
+        { "<leader>tm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown Preview" },
         {
           "<leader>tt",
           function()
