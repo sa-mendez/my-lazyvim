@@ -102,4 +102,15 @@ return {
       },
     },
   },
+
+  -- override the snacks.nvim bigfile logic to not trip on single line files that are still small
+  {
+    "folke/snacks.nvim",
+    ---@type snacks.Config
+    opts = {
+      bigfile = {
+        line_length = 1000000000,
+      },
+    },
+  },
 }
