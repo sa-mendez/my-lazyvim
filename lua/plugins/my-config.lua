@@ -51,6 +51,7 @@ return {
         { "<leader>bn", "<cmd>enew<cr>", desc = "New Buffer" },
 
         --Lazy group under <leader>l
+        { "<leader>lr", "<cmd>LazyRoot<cr>", desc = "Lazy Root" },
         { "<leader>ll", "<cmd>Lazy<cr>", desc = "Lazy" },
         { "<leader>lx", "<cmd>LazyExtra<cr>", desc = "Lazy Extra" },
         { "<leader>l", group = "+Lazy", icon = "💤" },
@@ -61,11 +62,19 @@ return {
         { "<leader>tl", "<cmd>set list!<cr>", desc = "Toggle List" },
         { "<leader>tm", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle Markdown Preview" },
         {
+          "<leader>tT",
+          function()
+            local buf_dir = vim.fn.expand("%:p:h")
+            Snacks.terminal(nil, { cwd = buf_dir })
+          end,
+          desc = "Toggle Terminal (Buffer Dir)",
+        },
+        {
           "<leader>tt",
           function()
             Snacks.terminal(nil, { cwd = LazyVim.root() })
           end,
-          desc = "Terminal (Root Dir)",
+          desc = "Toggle Terminal (Root Dir)",
         },
         { "<leader>tw", "<cmd>set wrap!<cr>", desc = "Toggle Wrap" },
         {
@@ -77,9 +86,20 @@ return {
 
         -- Write group under <leader>a
         { "<leader>aa", "<cmd>w!<cr>", desc = "Save" },
-        { "<leader>as", "<cmd>SudaWrite<cr>", desc = "Sudo Save" },
-        { "<leader>au", "<cmd>e ++ff=dos<cr><cmd>set ff=unix<cr><cmd>w<cr>", desc = "Save force Unix" },
-        { "<leader>a", group = "+Write", icon = "" },
+        {
+          "<leader>as",
+          function()
+            vim.ui.input({ prompt = "Save buffer as: " }, function(filename)
+              if filename and filename ~= "" then
+                vim.cmd("saveas " .. vim.fn.fnameescape(filename))
+              end
+            end)
+          end,
+          desc = "Save As",
+        },
+        { "<leader>au", "<cmd>SudaWrite<cr>", desc = "Sudo Save" },
+        { "<leader>ax", "<cmd>e ++ff=dos<cr><cmd>set ff=unix<cr><cmd>w<cr>", desc = "Save force Unix" },
+        { "<leader>a", group = "+Save", icon = "" },
       },
     },
   },
